@@ -8,130 +8,110 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- ====================================================== -->
-        <!-- HOME SCREEN: Initial view for mode selection           -->
-        <!-- ====================================================== -->
-        <div id="home-screen">
-            <h1>Welcome to the NFLQ Practice Hub</h1>
-            <p class="subtitle">Choose your mode to get started. Practice a specific section or create a mixed quiz.</p>
-            <div class="mode-selection">
-                <button id="quiz-mode-btn" class="mode-selection-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M12.063 9.052c.27-.31.52-.64.747-1.002h-1.62c-.238.41-.54.772-.913 1.088l1.786-.086zM8 8V2.138c.276.16.54.34.793.546l-1.14 1.63C7.293 4.543 7 4.962 7 5.5v2.5H8zm-1.604.034c.24-.41.532-.78.868-1.096l-1.14-1.631A7.96 7.96 0 0 0 4.396 8H6.396zM13.437 9.052c.227.362.43.74.604 1.148l-1.846-.073c-.152-.374-.352-.722-.6-1.037l1.842-.038zM8.5 8v5.862c-.276-.16-.54-.34-.793-.546l1.14-1.631c.358.25.753.418 1.153.492V8h-1.5zM4.563 9.052c-.248.315-.448.663-.6 1.037L2.117 10.2c.174-.408.377-.786.604-1.148l1.842.038zM14.883 10.2l-1.846.073c.152.374.254.77.302 1.182H15c.002-.165.002-.33.002-.495a10.04 10.04 0 0 0-.119-1.76zM1.117 10.2l1.846.073c-.152.374-.254.77-.302 1.182H1c-.002-.165-.002-.33-.002-.495a10.04 10.04 0 0 1 .119-1.76zM13.104 12.5c-.048-.412-.15-.808-.302-1.182H3.2c-.152.374-.254.77-.302 1.182H13.104zM8 1.034a6.96 6.96 0 0 1 2.604 1.1l-1.14 1.63A5.48 5.48 0 0 0 8 3.5v-2.466zM5.396 2.134A6.96 6.96 0 0 1 8 1.034v2.466a5.48 5.48 0 0 0-1.464.294l-1.14-1.63zM2.563 3.948l1.14 1.631c-.24.41-.433.85-.583 1.322H1.117a8.01 8.01 0 0 1 1.446-2.952zM13.437 3.948c.51.84.892 1.794 1.04 2.809H12.86c-.15-.472-.344-.912-.583-1.322l1.16-1.487z"/></svg>
-                    Quiz Mode
-                </button>
-                <button id="practice-mode-btn" class="mode-selection-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8.5 5.5a.5.5 0 0 0-1 0V12a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H9V5.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
-                    Practice Mode
-                </button>
-            </div>
-        </div>
-
-        <!-- ====================================================== -->
-        <!-- QUIZ SETUP SCREEN: For customizing a mixed quiz        -->
-        <!-- ====================================================== -->
-        <div id="quiz-setup-screen" class="hidden">
-            <h2>Create Your Custom Quiz</h2>
-            <div class="setup-grid">
-                <div class="setup-controls">
-                    <label for="question-count">Number of Questions:</label>
-                    <select id="question-count">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                 <div class="setup-controls">
-                    <label for="question-type">Question Type:</label>
-                    <select id="question-type">
-                        <option value="All">All Types</option>
-                        <option value="Multiple Choice">Multiple Choice</option>
-                        <option value="Direct Answer">Direct Answer</option>
-                        <option value="Jumbled Words">Jumbled Words</option>
-                        <option value="Slogan & Tagline Identification">Slogans & Taglines</option>
-                        <option value="Identify the Person/Logo/Concept">Identify Person/Logo/Concept</option>
-                    </select>
+    <div class="main-content">
+        <div class="container">
+            <div id="home-screen">
+                <h1>Welcome to the NFLQ Practice Hub</h1>
+                <p class="subtitle">Choose your mode to get started. Practice a specific section or create a mixed quiz.</p>
+                <div class="mode-selection">
+                    <button id="quiz-mode-btn" class="mode-selection-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M12.063 9.052c.27-.31.52-.64.747-1.002h-1.62c-.238.41-.54.772-.913 1.088l1.786-.086zM8 8V2.138c.276.16.54.34.793.546l-1.14 1.63C7.293 4.543 7 4.962 7 5.5v2.5H8zm-1.604.034c.24-.41.532-.78.868-1.096l-1.14-1.631A7.96 7.96 0 0 0 4.396 8H6.396zM13.437 9.052c.227.362.43.74.604 1.148l-1.846-.073c-.152-.374-.352-.722-.6-1.037l1.842-.038zM8.5 8v5.862c-.276-.16-.54-.34-.793-.546l1.14-1.631c.358.25.753.418 1.153.492V8h-1.5zM4.563 9.052c-.248.315-.448.663-.6 1.037L2.117 10.2c.174-.408.377-.786.604-1.148l1.842.038zM14.883 10.2l-1.846.073c.152.374.254.77.302 1.182H15c.002-.165.002-.33.002-.495a10.04 10.04 0 0 0-.119-1.76zM1.117 10.2l1.846.073c-.152.374-.254.77-.302 1.182H1c-.002-.165-.002-.33-.002-.495a10.04 10.04 0 0 1 .119-1.76zM13.104 12.5c-.048-.412-.15-.808-.302-1.182H3.2c-.152.374-.254.77-.302 1.182H13.104zM8 1.034a6.96 6.96 0 0 1 2.604 1.1l-1.14 1.63A5.48 5.48 0 0 0 8 3.5v-2.466zM5.396 2.134A6.96 6.96 0 0 1 8 1.034v2.466a5.48 5.48 0 0 0-1.464.294l-1.14-1.63zM2.563 3.948l1.14 1.631c-.24.41-.433.85-.583 1.322H1.117a8.01 8.01 0 0 1 1.446-2.952zM13.437 3.948c.51.84.892 1.794 1.04 2.809H12.86c-.15-.472-.344-.912-.583-1.322l1.16-1.487z"/></svg>
+                        Quiz Mode
+                    </button>
+                    <button id="practice-mode-btn" class="mode-selection-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M8.5 5.5a.5.5 0 0 0-1 0V12a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H9V5.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+                        Practice Mode
+                    </button>
                 </div>
             </div>
-            <h2>Select Sections (at least one)</h2>
-            <div id="section-checkboxes" class="section-checkbox-grid">
-                <!-- Checkboxes will be dynamically inserted here -->
-            </div>
-            <button id="start-quiz-btn" class="btn primary-btn" style="width: 100%; padding: 1rem;">Start Quiz</button>
-            <button class="btn secondary-btn back-btn" style="width: 100%; padding: 0.75rem; margin-top: 1rem;">Back to Home</button>
-        </div>
 
-        <!-- ====================================================== -->
-        <!-- PRACTICE SETUP SCREEN: For choosing a section to practice -->
-        <!-- ====================================================== -->
-        <div id="practice-setup-screen" class="hidden">
-            <h2>Choose a Section to Practice</h2>
-            <div id="practice-section-list" class="practice-list">
-                <!-- Section buttons will be dynamically inserted here -->
-            </div>
-            <button class="btn secondary-btn back-btn" style="width: 100%; padding: 0.75rem; margin-top: 1rem;">Back to Home</button>
-        </div>
-
-        <!-- ====================================================== -->
-        <!-- QUIZ AREA: The main interface for answering questions  -->
-        <!-- ====================================================== -->
-        <div id="quiz-area" class="hidden">
-            <div id="quiz-header">
-                <h2 id="quiz-title">Quiz in Progress</h2>
-                <p id="progress-info">Question 1 of 25</p>
-            </div>
-            <div id="question-container">
-                <p id="question-text">This is where the question text will go.</p>
-                <div id="answer-options">
-                    <!-- Answer buttons or input will be here -->
+            <div id="quiz-setup-screen" class="hidden">
+                <h2>Create Your Custom Quiz</h2>
+                <div class="setup-grid">
+                    <div class="setup-controls">
+                        <label for="question-count">Number of Questions:</label>
+                        <select id="question-count">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                     <div class="setup-controls">
+                        <label for="question-type">Question Type:</label>
+                        <select id="question-type">
+                            <option value="All">All Types</option>
+                            <option value="Multiple Choice">Multiple Choice</option>
+                            <option value="Direct Answer">Direct Answer</option>
+                            <option value="Jumbled Words">Jumbled Words</option>
+                            <option value="Slogan & Tagline Identification">Slogans & Taglines</option>
+                            <option value="Identify the Person/Logo/Concept">Identify Person/Logo/Concept</option>
+                        </select>
+                    </div>
+                </div>
+                <h2>Select Sections (at least one)</h2>
+                <div id="section-checkboxes" class="section-checkbox-grid">
+                    </div>
+                <div class="setup-actions">
+                    <button class="btn secondary-btn back-btn">Back to Home</button>
+                    <button id="start-quiz-btn" class="btn primary-btn">Start Quiz</button>
                 </div>
             </div>
-            <div id="feedback-area" class="hidden"></div>
-            <div class="quiz-footer">
-                <button id="home-btn" class="btn secondary-btn">🏠 Home</button>
-                <span id="score-info" style="font-weight: 600; font-size: 1.125rem;">Score: 0</span>
-                <div>
-                    <button id="ai-explain-btn" class="btn ai-btn hidden">🤖 Ask Gemini</button>
-                    <button id="next-question-btn" class="btn primary-btn hidden">Next Question →</button>
+
+            <div id="practice-setup-screen" class="hidden">
+                <h2>Choose a Section to Practice</h2>
+                <div id="practice-section-list" class="practice-list">
+                    </div>
+                <button class="btn secondary-btn back-btn" style="width: 100%; margin-top: 1rem;">Back to Home</button>
+            </div>
+
+            <div id="quiz-area" class="hidden">
+                <div id="quiz-header">
+                    <h2 id="quiz-title">Quiz in Progress</h2>
+                    <p id="progress-info">Question 1 of 25</p>
+                </div>
+                <div id="question-container">
+                    <p id="question-text">This is where the question text will go.</p>
+                    <div id="answer-options">
+                        </div>
+                </div>
+                <div id="feedback-area" class="hidden"></div>
+                <div class="quiz-footer">
+                    <button id="home-btn" class="btn secondary-btn">🏠 Home</button>
+                    <span id="score-info" style="font-weight: 600; font-size: 1.125rem;">Score: 0</span>
+                    <div>
+                        <button id="ai-explain-btn" class="btn ai-btn hidden">🤖 Ask Gemini</button>
+                        <button id="next-question-btn" class="btn primary-btn hidden">Next Question →</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ====================================================== -->
-        <!-- FINAL SCORE SCREEN: Displays the user's result       -->
-        <!-- ====================================================== -->
-        <div id="score-screen" class="hidden">
-            <h2>Quiz Complete!</h2>
-            <p id="final-score-text" class="subtitle">Your final score is:</p>
-            <p id="score-display" style="font-size: 3rem; font-weight: 800; color: var(--primary-accent); margin-bottom: 2rem;">0 / 0</p>
-            <button id="restart-quiz-btn" class="btn primary-btn">Play Again</button>
-            <button class="btn secondary-btn back-btn" style="margin-left: 1rem;">Back to Home</button>
+            <div id="score-screen" class="hidden">
+                <h2>Quiz Complete!</h2>
+                <p id="final-score-text" class="subtitle">Your final score is:</p>
+                <p id="score-display">0 / 0</p>
+                <div class="final-score-actions">
+                    <button class="btn secondary-btn back-btn">Back to Home</button>
+                    <button id="restart-quiz-btn" class="btn primary-btn">Play Again</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- ====================================================== -->
-    <!-- AI MODAL: Pop-up for Gemini's explanations             -->
-    <!-- ====================================================== -->
     <div id="ai-modal" class="modal hidden">
         <div class="modal-content">
             <button class="modal-close-btn" id="modal-close-btn">&times;</button>
             <h2>Gemini's Explanation</h2>
             <div id="ai-explanation-content">
-                <!-- Content from Gemini will be loaded here -->
-            </div>
+                </div>
         </div>
     </div>
-    
-    <!-- ====================================================== -->
-    <!-- FOOTER                                                 -->
-    <!-- ====================================================== -->
-    <footer class="footer" style="position: absolute; bottom: 10px; width: 100%; text-align: center;">
-        <p style="margin: 0; font-size: 0.875rem;">Developed by <a href="https://www.linkedin.com/in/dhruv-kumar-bansal-1b5767227/" target="_blank">Dhruv Kumar Bansal</a></p>
+
+    <footer class="footer">
+        <p>Developed by <a href="https://www.linkedin.com/in/dhruv-kumar-bansal-1b5767227/" target="_blank">Dhruv Kumar Bansal</a></p>
     </footer>
 
 
-    <!-- Link to the external questions databases -->
     <script src="questions_indian_economy.js"></script>
     <script src="questions_banking_rbi.js"></script>
     <script src="questions_financial_markets.js"></script>
@@ -145,7 +125,6 @@
     <script src="questions_jumbled_words.js"></script>
     <script src="questions_identify.js"></script>
 
-    <!-- Main Application Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Combine all question arrays into one master array
@@ -247,7 +226,7 @@
                 quizSetupElements.checkboxes.innerHTML = sections.map(section => `
                     <label class="checkbox-label">
                         <input type="checkbox" name="section" value="${section}">
-                        ${section}
+                        <span>${section}</span>
                     </label>
                 `).join('');
 
@@ -363,29 +342,41 @@
                 } else {
                     quizElements.answerOptions.classList.remove('mcq');
                     quizElements.answerOptions.innerHTML = `
-                        <input type="text" id="answer-input" placeholder="Type your answer here...">
+                        <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
                         <button id="submit-answer-btn" class="btn primary-btn">Submit</button>
                     `;
+                    const inputField = document.getElementById('answer-input');
                     document.getElementById('submit-answer-btn').addEventListener('click', () => {
-                        const userInput = document.getElementById('answer-input').value;
+                        const userInput = inputField.value;
                         checkAnswer(userInput, question.answer, 'text');
+                    });
+                    inputField.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            const userInput = inputField.value;
+                            checkAnswer(userInput, question.answer, 'text');
+                        }
                     });
                 }
             }
             
             function checkAnswer(selectedAnswer, correctAnswer, type) {
+                // Prevent multiple submissions
+                if (quizElements.feedback.classList.contains('feedback-correct') || quizElements.feedback.classList.contains('feedback-incorrect')) {
+                    return;
+                }
+
                 const isCorrect = selectedAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
 
                 if (type === 'mcq') {
                     const buttons = quizElements.answerOptions.querySelectorAll('button');
                     buttons.forEach(button => {
                         button.disabled = true;
-                        if (button.textContent === correctAnswer) {
+                        if (button.textContent.toLowerCase() === correctAnswer.toLowerCase()) {
                             button.classList.add('correct');
                         }
                     });
                     if (!isCorrect) {
-                        const selectedButton = Array.from(buttons).find(b => b.textContent === selectedAnswer);
+                        const selectedButton = Array.from(buttons).find(b => b.textContent.toLowerCase() === selectedAnswer.toLowerCase());
                         if (selectedButton) selectedButton.classList.add('incorrect');
                     }
                 } else {
@@ -406,11 +397,13 @@
                 quizElements.score.textContent = `Score: ${score}`;
                 quizElements.aiBtn.classList.remove('hidden');
                 quizElements.nextBtn.classList.remove('hidden');
+                quizElements.nextBtn.focus(); // Focus on the next button for easy navigation
             }
             
             function resetQuestionUI() {
                 quizElements.answerOptions.innerHTML = '';
                 quizElements.feedback.classList.add('hidden');
+                quizElements.feedback.classList.remove('feedback-correct', 'feedback-incorrect');
                 quizElements.aiBtn.classList.add('hidden');
                 quizElements.nextBtn.classList.add('hidden');
             }
@@ -423,7 +416,6 @@
 
             // --- Gemini API Integration ---
             async function getAIExplanation() {
-                // This now correctly references the question that was just answered.
                 const question = currentQuestions[currentQuestionIndex]; 
                 
                 aiModalElements.modal.classList.add('visible');
@@ -435,10 +427,17 @@
                 Correct Answer: "${question.answer}"`;
 
                 try {
-                    // NOTE: The API Key is intentionally left blank. 
-                    // The platform will securely provide it at runtime.
-                    const apiKey = ""; 
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    // =================================================================
+                    // IMPORTANT: PASTE YOUR GOOGLE AI GEMINI API KEY HERE
+                    // =================================================================
+                    const apiKey = "AIzaSyCtW7xm6EaOeyqbFErWWM-jEnb7vdHOLk4"; // <--- PASTE YOUR API KEY HERE
+                    
+                    if (!apiKey) {
+                         aiModalElements.content.innerHTML = `<p style="color:orange;"><strong>API Key Missing!</strong><br><br>Please open the <code>index.html</code> file and add your Google AI Gemini API key to the 'apiKey' constant in the 'getAIExplanation' function to enable this feature.</p>`;
+                         return;
+                    }
+
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
                     
                     const payload = {
                         contents: [{ role: "user", parts: [{ text: prompt }] }]
@@ -450,18 +449,24 @@
                         body: JSON.stringify(payload)
                     });
 
-                    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                    if (!response.ok) throw new Error(`API Error: ${response.status} - ${response.statusText}`);
 
                     const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0) {
-                        const explanation = result.candidates[0].content.parts[0].text;
-                        aiModalElements.content.innerHTML = explanation.replace(/\n/g, '<br>');
+
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts) {
+                        // Using a simple regex to format the response text for better readability.
+                        let explanation = result.candidates[0].content.parts[0].text;
+                        explanation = explanation
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>')       // Italics
+                            .replace(/\n/g, '<br>');                      // Newlines
+                        aiModalElements.content.innerHTML = `<p>${explanation}</p>`;
                     } else {
-                        throw new Error("Invalid response structure from AI.");
+                         throw new Error("Invalid response structure from AI. Check the API response in the network tab.");
                     }
                 } catch (error) {
                     console.error("AI Explanation Failed:", error);
-                    aiModalElements.content.innerHTML = `<p style="color:red;">Sorry, an error occurred while fetching the explanation. Please check the console for details and try again later.</p>`;
+                    aiModalElements.content.innerHTML = `<p style="color:red;"><strong>Sorry, an error occurred.</strong><br><br>This might be due to an invalid API key, network issues, or API restrictions. Please check the browser console (Ctrl+Shift+I) for more details and try again later.</p>`;
                 }
             }
 

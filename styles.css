@@ -1,0 +1,445 @@
+/* ===================================================================================
+   NFLQ 2025 - Professional UI/UX Stylesheet
+   Theme: Midnight Blue & Neon
+   =================================================================================== */
+
+/* --- Base & Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-primary: #0d1117;       /* Deep Blue/Black */
+    --bg-secondary: #161b22;    /* Lighter Blue/Black */
+    --bg-tertiary: #21262d;     /* Even Lighter */
+    --primary-accent: #58a6ff;     /* Bright Blue */
+    --primary-accent-hover: #79c0ff;
+    --correct-color: #2e9a4f;       /* Vibrant Green */
+    --incorrect-color: #da3633;     /* Vibrant Red */
+    --text-primary: #c9d1d9;      /* Light Gray */
+    --text-secondary: #8b949e;   /* Medium Gray */
+    --border-color: #30363d;      /* Gray Border */
+    --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    background-color: var(--bg-secondary);
+    width: 100%;
+    max-width: 800px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--border-color);
+}
+
+h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+p.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-size: 1.125rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Screen & Button Styles --- */
+.mode-selection-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.mode-selection-btn:hover {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(88, 166, 255, 0.2);
+}
+
+/* --- Quiz Setup Styles --- */
+.setup-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .setup-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.setup-controls label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.setup-controls select, .setup-controls input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.section-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-weight: 500;
+}
+
+.checkbox-label:hover {
+    background-color: #30363d;
+}
+
+.checkbox-label input {
+    margin-right: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--primary-accent);
+}
+
+/* --- Practice Mode List --- */
+.practice-list button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.practice-list button:hover {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+    color: var(--bg-primary);
+    transform: translateX(5px);
+}
+
+/* --- Quiz Area Styles --- */
+#progress-info {
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#question-text {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 600;
+    min-height: 100px;
+    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.6;
+    color: white;
+}
+
+#answer-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    #answer-options.mcq {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+#answer-options button {
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+#answer-options button:hover:not(:disabled) {
+    border-color: var(--primary-accent);
+    background-color: #30363d;
+}
+
+#answer-options button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#answer-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+#answer-input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+}
+
+.answer-btn.correct {
+    background-color: var(--correct-color) !important;
+    border-color: #32a253 !important;
+    color: white !important;
+    transform: scale(1.02);
+}
+
+.answer-btn.incorrect {
+    background-color: var(--incorrect-color) !important;
+    border-color: #e04441 !important;
+    color: white !important;
+}
+
+#feedback-area {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.feedback-correct {
+    background-color: rgba(46, 154, 79, 0.2);
+    color: #3fb950;
+}
+
+.feedback-incorrect {
+    background-color: rgba(218, 54, 51, 0.2);
+    color: #ff7b72;
+}
+
+/* --- Controls & Footer --- */
+.quiz-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.primary-btn {
+    background-color: var(--primary-accent);
+    color: var(--bg-primary);
+}
+.primary-btn:hover {
+    background-color: var(--primary-accent-hover);
+}
+
+.secondary-btn {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.secondary-btn:hover {
+    background-color: #30363d;
+    border-color: #8b949e;
+}
+
+.ai-btn {
+    background-color: transparent;
+    color: var(--primary-accent);
+    border: 1px solid var(--primary-accent);
+}
+.ai-btn:hover {
+    background-color: var(--primary-accent);
+    color: var(--bg-primary);
+}
+.ai-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Modal Styles --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s;
+}
+
+.modal.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.75rem;
+    line-height: 1;
+    font-weight: bold;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+.modal-close-btn:hover {
+    transform: rotate(90deg);
+    color: white;
+}
+
+.spinner {
+    border: 5px solid var(--border-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border-left-color: var(--primary-accent);
+    animation: spin 1s ease infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.footer a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer a:hover {
+    color: var(--primary-accent-hover);
+    text-decoration: underline;
+}

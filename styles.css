@@ -388,21 +388,6 @@ p.subtitle {
     border-color: #8b949e;
 }
 
-.ai-btn {
-    background-color: transparent;
-    color: var(--primary-accent);
-    border: 1px solid var(--primary-accent);
-}
-.ai-btn:hover {
-    background-color: rgba(88, 166, 255, 0.1);
-}
-.ai-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
 /* --- Score Screen --- */
 #score-display {
     font-size: clamp(3rem, 10vw, 4.5rem);
@@ -416,86 +401,6 @@ p.subtitle {
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-}
-
-
-/* --- Modal Styles --- */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    padding: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-
-.modal.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background-color: var(--bg-secondary);
-    padding: 2.5rem;
-    border-radius: 1rem;
-    border: 1px solid var(--border-color);
-    max-width: 650px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    transform: scale(0.95);
-    transition: transform 0.3s;
-    line-height: 1.7;
-    color: var(--text-primary);
-}
-.modal-content h2 {
-    margin-bottom: 1.5rem;
-}
-
-.modal.visible .modal-content {
-    transform: scale(1);
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.75rem;
-    line-height: 1;
-    font-weight: bold;
-    color: var(--text-secondary);
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-}
-.modal-close-btn:hover {
-    transform: rotate(90deg);
-    color: white;
-}
-
-.spinner {
-    border: 5px solid var(--border-color);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border-left-color: var(--primary-accent);
-    animation: spin 1s ease infinite;
-    margin: 2rem auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 /* --- Footer --- */

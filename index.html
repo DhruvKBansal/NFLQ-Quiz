@@ -50,8 +50,7 @@
                     </div>
                 </div>
                 <h2>Select Sections (at least one)</h2>
-                <div id="section-checkboxes" class="section-checkbox-grid">
-                    </div>
+                <div id="section-checkboxes" class="section-checkbox-grid"></div>
                 <div class="setup-actions">
                     <button class="btn secondary-btn back-btn">Back to Home</button>
                     <button id="start-quiz-btn" class="btn primary-btn">Start Quiz</button>
@@ -60,8 +59,7 @@
 
             <div id="practice-setup-screen" class="hidden">
                 <h2>Choose a Section to Practice</h2>
-                <div id="practice-section-list" class="practice-list">
-                    </div>
+                <div id="practice-section-list" class="practice-list"></div>
                 <button class="btn secondary-btn back-btn" style="width: 100%; margin-top: 1rem;">Back to Home</button>
             </div>
 
@@ -72,15 +70,13 @@
                 </div>
                 <div id="question-container">
                     <p id="question-text">This is where the question text will go.</p>
-                    <div id="answer-options">
-                        </div>
+                    <div id="answer-options"></div>
                 </div>
                 <div id="feedback-area" class="hidden"></div>
                 <div class="quiz-footer">
                     <button id="home-btn" class="btn secondary-btn">🏠 Home</button>
                     <span id="score-info" style="font-weight: 600; font-size: 1.125rem;">Score: 0</span>
                     <div>
-                        <button id="ai-explain-btn" class="btn ai-btn hidden">🤖 Ask Gemini</button>
                         <button id="next-question-btn" class="btn primary-btn hidden">Next Question →</button>
                     </div>
                 </div>
@@ -98,19 +94,9 @@
         </div>
     </div>
 
-    <div id="ai-modal" class="modal hidden">
-        <div class="modal-content">
-            <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-            <h2>Gemini's Explanation</h2>
-            <div id="ai-explanation-content">
-                </div>
-        </div>
-    </div>
-
     <footer class="footer">
-        <p>Developed by <a href="https://www.linkedin.com/in/dhruv-kumar-bansal-1b5767227/" target="_blank">Dhruv Kumar Bansal</a></p>
+        <p>Developed by <a href="https://www.linkedin.com/in/dhruvkumarbansal" target="_blank">Dhruv Kumar Bansal</a></p>
     </footer>
-
 
     <script src="questions_indian_economy.js"></script>
     <script src="questions_banking_rbi.js"></script>
@@ -127,34 +113,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Combine all question arrays into one master array
             const allQuestions = [
-                ...questions_indian_economy,
-                ...questions_banking_rbi,
-                ...questions_financial_markets,
-                ...questions_mutual_funds_insurance,
-                ...questions_taxation_budget,
-                ...questions_startups_fintech,
-                ...questions_international_finance,
-                ...questions_business_concepts,
-                ...questions_direct_answer,
-                ...questions_slogans,
-                ...questions_jumbled_words,
-                ...questions_identify
+                ...questions_indian_economy, ...questions_banking_rbi, ...questions_financial_markets,
+                ...questions_mutual_funds_insurance, ...questions_taxation_budget, ...questions_startups_fintech,
+                ...questions_international_finance, ...questions_business_concepts, ...questions_direct_answer,
+                ...questions_slogans, ...questions_jumbled_words, ...questions_identify
             ];
 
-            // --- DOM Element References ---
             const screens = {
                 home: document.getElementById('home-screen'),
                 quizSetup: document.getElementById('quiz-setup-screen'),
                 practiceSetup: document.getElementById('practice-setup-screen'),
                 quiz: document.getElementById('quiz-area'),
                 score: document.getElementById('score-screen'),
-            };
-
-            const homeButtons = {
-                quizMode: document.getElementById('quiz-mode-btn'),
-                practiceMode: document.getElementById('practice-mode-btn'),
             };
 
             const quizSetupElements = {
@@ -164,9 +135,7 @@
                 startBtn: document.getElementById('start-quiz-btn'),
             };
 
-            const practiceSetupElements = {
-                list: document.getElementById('practice-section-list'),
-            };
+            const practiceSetupElements = { list: document.getElementById('practice-section-list') };
             
             const quizElements = {
                 title: document.getElementById('quiz-title'),
@@ -175,32 +144,20 @@
                 answerOptions: document.getElementById('answer-options'),
                 feedback: document.getElementById('feedback-area'),
                 score: document.getElementById('score-info'),
-                aiBtn: document.getElementById('ai-explain-btn'),
                 nextBtn: document.getElementById('next-question-btn'),
                 homeBtn: document.getElementById('home-btn'),
             };
 
             const scoreElements = {
-                finalScoreText: document.getElementById('final-score-text'),
                 scoreDisplay: document.getElementById('score-display'),
                 restartBtn: document.getElementById('restart-quiz-btn'),
             };
 
-            const aiModalElements = {
-                modal: document.getElementById('ai-modal'),
-                content: document.getElementById('ai-explanation-content'),
-                closeBtn: document.getElementById('modal-close-btn'),
-            };
-
-            const backButtons = document.querySelectorAll('.back-btn');
-
-            // --- State Variables ---
             let currentQuestions = [];
             let currentQuestionIndex = 0;
             let score = 0;
             let quizModeSettings = {};
 
-            // --- Utility Functions ---
             const showScreen = (screenName) => {
                 Object.values(screens).forEach(screen => screen.classList.add('hidden'));
                 screens[screenName].classList.remove('hidden');
@@ -214,76 +171,42 @@
                 return array;
             };
 
-            // --- Initialization ---
             const initialize = () => {
-                const sections = [
-                    "Indian Economy & Policy", "Banking & RBI", "Financial Markets & Instruments",
-                    "Mutual Funds & Insurance", "Taxation & Budget", "Startups & Fintech",
-                    "International Finance & Organizations", "Business Concepts, Personalities & History",
-                    "Direct Answer", "Slogan & Tagline Identification", "Jumbled Words", "Identify the Person/Logo/Concept"
-                ];
-
+                const sections = [...new Set(allQuestions.map(q => q.section))];
                 quizSetupElements.checkboxes.innerHTML = sections.map(section => `
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="section" value="${section}">
-                        <span>${section}</span>
-                    </label>
+                    <label class="checkbox-label"><input type="checkbox" name="section" value="${section}"><span>${section}</span></label>
                 `).join('');
-
                 practiceSetupElements.list.innerHTML = sections.map(section => `
                     <button data-section="${section}">${section}</button>
                 `).join('');
+
+                document.getElementById('quiz-mode-btn').addEventListener('click', () => showScreen('quizSetup'));
+                document.getElementById('practice-mode-btn').addEventListener('click', () => showScreen('practiceSetup'));
+                document.querySelectorAll('.back-btn').forEach(btn => btn.addEventListener('click', () => showScreen('home')));
+                quizElements.homeBtn.addEventListener('click', () => {
+                    if (confirm("Are you sure you want to quit?")) showScreen('home');
+                });
+                quizSetupElements.startBtn.addEventListener('click', startQuizFromSetup);
+                practiceSetupElements.list.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'BUTTON') startPracticeMode(e.target.dataset.section);
+                });
+                quizElements.nextBtn.addEventListener('click', () => {
+                    currentQuestionIndex++;
+                    showNextQuestion();
+                });
+                scoreElements.restartBtn.addEventListener('click', () => {
+                    quizModeSettings.isPractice 
+                        ? startPracticeMode(quizModeSettings.sections[0])
+                        : startQuiz(quizModeSettings.sections, quizModeSettings.count, quizModeSettings.type);
+                });
             };
 
-            // --- Event Listeners ---
-            homeButtons.quizMode.addEventListener('click', () => showScreen('quizSetup'));
-            homeButtons.practiceMode.addEventListener('click', () => showScreen('practiceSetup'));
-            backButtons.forEach(btn => btn.addEventListener('click', () => showScreen('home')));
-            quizElements.homeBtn.addEventListener('click', () => {
-                if (confirm("Are you sure you want to quit the current quiz?")) {
-                    showScreen('home');
-                }
-            });
-
-            quizSetupElements.startBtn.addEventListener('click', startQuizFromSetup);
-            practiceSetupElements.list.addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON') {
-                    startPracticeMode(e.target.dataset.section);
-                }
-            });
-
-            quizElements.nextBtn.addEventListener('click', () => {
-                currentQuestionIndex++;
-                showNextQuestion();
-            });
-            quizElements.aiBtn.addEventListener('click', getAIExplanation);
-            aiModalElements.closeBtn.addEventListener('click', () => aiModalElements.modal.classList.remove('visible'));
-            aiModalElements.modal.addEventListener('click', (e) => {
-                if (e.target === aiModalElements.modal) {
-                    aiModalElements.modal.classList.remove('visible');
-                }
-            });
-            scoreElements.restartBtn.addEventListener('click', () => {
-                if (quizModeSettings.isPractice) {
-                    startPracticeMode(quizModeSettings.sections[0]);
-                } else {
-                    startQuiz(quizModeSettings.sections, quizModeSettings.count, quizModeSettings.type);
-                }
-            });
-
-            // --- Quiz Logic ---
             function startQuizFromSetup() {
                 const selectedSections = Array.from(quizSetupElements.checkboxes.querySelectorAll('input:checked')).map(cb => cb.value);
-                const questionCount = parseInt(quizSetupElements.questionCount.value);
-                const questionType = quizSetupElements.questionType.value;
-
-                if (selectedSections.length === 0) {
-                    alert('Please select at least one section.');
-                    return;
-                }
-                startQuiz(selectedSections, questionCount, questionType);
+                if (selectedSections.length === 0) return alert('Please select at least one section.');
+                startQuiz(selectedSections, parseInt(quizSetupElements.questionCount.value), quizSetupElements.questionType.value);
             }
-            
+
             function startPracticeMode(section) {
                 quizModeSettings = { isPractice: true, sections: [section] };
                 currentQuestions = allQuestions.filter(q => q.section === section);
@@ -293,18 +216,10 @@
 
             function startQuiz(sections, count, type) {
                 quizModeSettings = { isPractice: false, sections, count, type };
-                let filteredQuestions = allQuestions.filter(q => sections.includes(q.section));
-                
-                if (type !== 'All') {
-                    filteredQuestions = filteredQuestions.filter(q => q.type === type);
-                }
-
-                if(filteredQuestions.length === 0) {
-                    alert('No questions found for the selected criteria. Please change your selections.');
-                    return;
-                }
-
-                currentQuestions = shuffleArray(filteredQuestions).slice(0, count);
+                let filtered = allQuestions.filter(q => sections.includes(q.section));
+                if (type !== 'All') filtered = filtered.filter(q => q.type === type);
+                if (filtered.length === 0) return alert('No questions found for the selected criteria.');
+                currentQuestions = shuffleArray(filtered).slice(0, count);
                 quizElements.title.textContent = 'Quiz in Progress';
                 startQuizFlow();
             }
@@ -317,14 +232,9 @@
             }
 
             function showNextQuestion() {
-                if (currentQuestionIndex >= currentQuestions.length) {
-                    showFinalScore();
-                    return;
-                }
-
+                if (currentQuestionIndex >= currentQuestions.length) return showFinalScore();
                 resetQuestionUI();
                 const question = currentQuestions[currentQuestionIndex];
-                
                 quizElements.progress.textContent = `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
                 quizElements.score.textContent = `Score: ${score}`;
                 quizElements.questionText.textContent = question.question;
@@ -346,38 +256,27 @@
                         <button id="submit-answer-btn" class="btn primary-btn">Submit</button>
                     `;
                     const inputField = document.getElementById('answer-input');
-                    document.getElementById('submit-answer-btn').addEventListener('click', () => {
-                        const userInput = inputField.value;
-                        checkAnswer(userInput, question.answer, 'text');
-                    });
-                    inputField.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            const userInput = inputField.value;
-                            checkAnswer(userInput, question.answer, 'text');
-                        }
-                    });
+                    const submitBtn = document.getElementById('submit-answer-btn');
+                    const handleSubmit = () => checkAnswer(inputField.value, question.answer, 'text');
+                    submitBtn.addEventListener('click', handleSubmit);
+                    inputField.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSubmit(); });
                 }
             }
-            
-            function checkAnswer(selectedAnswer, correctAnswer, type) {
-                // Prevent multiple submissions
-                if (quizElements.feedback.classList.contains('feedback-correct') || quizElements.feedback.classList.contains('feedback-incorrect')) {
-                    return;
-                }
 
-                const isCorrect = selectedAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
+            function checkAnswer(selected, correct, type) {
+                if (quizElements.feedback.classList.contains('feedback-correct') || quizElements.feedback.classList.contains('feedback-incorrect')) return;
+
+                const isCorrect = selected.trim().toLowerCase() === correct.toLowerCase();
 
                 if (type === 'mcq') {
                     const buttons = quizElements.answerOptions.querySelectorAll('button');
                     buttons.forEach(button => {
                         button.disabled = true;
-                        if (button.textContent.toLowerCase() === correctAnswer.toLowerCase()) {
-                            button.classList.add('correct');
-                        }
+                        if (button.textContent.toLowerCase() === correct.toLowerCase()) button.classList.add('correct');
                     });
                     if (!isCorrect) {
-                        const selectedButton = Array.from(buttons).find(b => b.textContent.toLowerCase() === selectedAnswer.toLowerCase());
-                        if (selectedButton) selectedButton.classList.add('incorrect');
+                        const selectedBtn = Array.from(buttons).find(b => b.textContent.toLowerCase() === selected.toLowerCase());
+                        if (selectedBtn) selectedBtn.classList.add('incorrect');
                     }
                 } else {
                     document.getElementById('answer-input').disabled = true;
@@ -389,90 +288,29 @@
                     quizElements.feedback.textContent = 'Correct!';
                     quizElements.feedback.className = 'feedback-correct';
                 } else {
-                    quizElements.feedback.textContent = `Incorrect. The correct answer is: ${correctAnswer}`;
+                    quizElements.feedback.textContent = `Incorrect. The correct answer is: ${correct}`;
                     quizElements.feedback.className = 'feedback-incorrect';
                 }
                 
                 quizElements.feedback.classList.remove('hidden');
                 quizElements.score.textContent = `Score: ${score}`;
-                quizElements.aiBtn.classList.remove('hidden');
                 quizElements.nextBtn.classList.remove('hidden');
-                quizElements.nextBtn.focus(); // Focus on the next button for easy navigation
+                quizElements.nextBtn.focus();
             }
             
             function resetQuestionUI() {
                 quizElements.answerOptions.innerHTML = '';
-                quizElements.feedback.classList.add('hidden');
-                quizElements.feedback.classList.remove('feedback-correct', 'feedback-incorrect');
-                quizElements.aiBtn.classList.add('hidden');
+                quizElements.feedback.className = 'hidden';
                 quizElements.nextBtn.classList.add('hidden');
             }
 
             function showFinalScore() {
-                scoreElements.scoreDisplay.textContent = `${score} / ${currentQuestions.length}`;
-                scoreElements.finalScoreText.textContent = `You answered ${score} out of ${currentQuestions.length} questions correctly.`;
+                document.getElementById('score-display').textContent = `${score} / ${currentQuestions.length}`;
+                document.getElementById('final-score-text').textContent = `You answered ${score} out of ${currentQuestions.length} questions correctly.`;
                 showScreen('score');
             }
 
-            // --- Gemini API Integration ---
-            async function getAIExplanation() {
-                const question = currentQuestions[currentQuestionIndex]; 
-                
-                aiModalElements.modal.classList.add('visible');
-                aiModalElements.content.innerHTML = '<div class="spinner"></div>';
-
-                const prompt = `Please explain the answer to the following financial literacy question. Keep the explanation clear, concise, and easy for a student to understand. Use simple analogies if possible.
-                
-                Question: "${question.question}"
-                Correct Answer: "${question.answer}"`;
-
-                try {
-                    // =================================================================
-                    // IMPORTANT: PASTE YOUR GOOGLE AI GEMINI API KEY HERE
-                    // =================================================================
-                    const apiKey = "AIzaSyCtW7xm6EaOeyqbFErWWM-jEnb7vdHOLk4"; // <--- PASTE YOUR API KEY HERE
-                    
-                    if (!apiKey) {
-                         aiModalElements.content.innerHTML = `<p style="color:orange;"><strong>API Key Missing!</strong><br><br>Please open the <code>index.html</code> file and add your Google AI Gemini API key to the 'apiKey' constant in the 'getAIExplanation' function to enable this feature.</p>`;
-                         return;
-                    }
-
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-                    
-                    const payload = {
-                        contents: [{ role: "user", parts: [{ text: prompt }] }]
-                    };
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) throw new Error(`API Error: ${response.status} - ${response.statusText}`);
-
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts) {
-                        // Using a simple regex to format the response text for better readability.
-                        let explanation = result.candidates[0].content.parts[0].text;
-                        explanation = explanation
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
-                            .replace(/\*(.*?)\*/g, '<em>$1</em>')       // Italics
-                            .replace(/\n/g, '<br>');                      // Newlines
-                        aiModalElements.content.innerHTML = `<p>${explanation}</p>`;
-                    } else {
-                         throw new Error("Invalid response structure from AI. Check the API response in the network tab.");
-                    }
-                } catch (error) {
-                    console.error("AI Explanation Failed:", error);
-                    aiModalElements.content.innerHTML = `<p style="color:red;"><strong>Sorry, an error occurred.</strong><br><br>This might be due to an invalid API key, network issues, or API restrictions. Please check the browser console (Ctrl+Shift+I) for more details and try again later.</p>`;
-                }
-            }
-
-            // --- Initial Load ---
             initialize();
-            showScreen('home');
         });
     </script>
 </body>

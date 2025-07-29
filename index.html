@@ -95,7 +95,10 @@
     </div>
 
     <footer class="footer">
-        <p>Developed by <a href="https://www.linkedin.com/in/dhruvkumarbansal" target="_blank">Dhruv Kumar Bansal</a></p>
+        <div class="footer-stats">
+            Total Visits: <span id="visitor-count">0</span>
+        </div>
+        <p>Developed by <a href="https://www.linkedin.com/in/dhruvkumarbansal/" target="_blank">Dhruv Kumar Bansal</a></p>
     </footer>
 
     <script src="questions_indian_economy.js"></script>
@@ -112,6 +115,24 @@
     <script src="questions_identify.js"></script>
 
     <script>
+        // Visitor Counter Logic
+        function updateVisitorCount() {
+            const countElement = document.getElementById('visitor-count');
+            const apiUrl = 'https://api.counterapi.dev/v1/dhruvkbansal/nflq-quiz/up'; // Changed the name to be specific
+
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    countElement.textContent = data.count.toLocaleString();
+                })
+                .catch(error => {
+                    console.error("Visitor count failed:", error);
+                    countElement.textContent = 'N/A';
+                });
+        }
+        updateVisitorCount();
+
+        // Main App Logic
         document.addEventListener('DOMContentLoaded', () => {
             const allQuestions = [
                 ...questions_indian_economy, ...questions_banking_rbi, ...questions_financial_markets,

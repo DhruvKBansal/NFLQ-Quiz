@@ -1,5 +1,5 @@
 /* ===================================================================================
-   NFLQ 2025 - Professional UI/UX Stylesheet (IMPROVED)
+   NFLQ 2025 - Professional UI/UX Stylesheet (COLORFUL DARK THEME)
    Theme: Midnight Blue & Neon
    =================================================================================== */
 
@@ -7,18 +7,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-primary: #0d1117;       /* Deep Blue/Black */
-    --bg-secondary: #161b22;    /* Lighter Blue/Black */
-    --bg-tertiary: #21262d;     /* Even Lighter */
-    --primary-accent: #58a6ff;     /* Bright Blue */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --primary-accent: #58a6ff;
     --primary-accent-hover: #79c0ff;
-    --correct-color: #238636;       /* Vibrant Green */
-    --correct-color-bg: rgba(35, 134, 54, 0.15);
-    --incorrect-color: #da3633;     /* Vibrant Red */
-    --incorrect-color-bg: rgba(218, 54, 51, 0.15);
-    --text-primary: #c9d1d9;      /* Light Gray */
-    --text-secondary: #8b949e;   /* Medium Gray */
-    --border-color: #30363d;      /* Gray Border */
+    --secondary-accent: #a371f7; /* New accent color: Vibrant Purple */
+    --correct-color: #238636;
+    --correct-color-glow: rgba(46, 160, 67, 0.4);
+    --incorrect-color: #da3633;
+    --incorrect-color-glow: rgba(248, 81, 73, 0.4);
+    --text-primary: #e6edf3;
+    --text-secondary: #8d96a0;
+    --border-color: #30363d;
     --shadow-color: rgba(0, 0, 0, 0.4);
     --font-family: 'Lexend', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -35,8 +36,9 @@ html {
 
 body {
     font-family: var(--font-family);
-    background-color: var(--bg-primary);
     color: var(--text-primary);
+    background-color: var(--bg-primary);
+    background-image: radial-gradient(circle at top, rgba(33, 38, 45, 0.5) 0%, var(--bg-primary) 60%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,18 +62,20 @@ body {
     width: 100%;
     max-width: 800px;
     border-radius: 1rem;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: 0 10px 40px var(--shadow-color), 0 0 0 1px var(--border-color);
     padding: clamp(1.5rem, 5vw, 3rem);
     transition: all 0.3s ease-in-out;
     border: 1px solid var(--border-color);
 }
 
 h1 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 5vw, 2.75rem);
     font-weight: 700;
-    color: white;
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -87,9 +91,9 @@ h2 {
 p.subtitle {
     text-align: center;
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     font-size: 1.125rem;
-    max-width: 500px;
+    max-width: 550px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
@@ -106,9 +110,9 @@ p.subtitle {
     justify-content: center;
     gap: 0.75rem;
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 1.1rem 1.5rem;
     margin-bottom: 1rem;
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: white;
     background-color: var(--bg-tertiary);
@@ -119,10 +123,9 @@ p.subtitle {
 }
 
 .mode-selection-btn:hover {
-    background-color: var(--primary-accent);
-    border-color: var(--primary-accent);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(88, 166, 255, 0.2);
+    border-color: var(--secondary-accent);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(163, 113, 247, 0.2);
 }
 
 /* --- Quiz Setup Styles --- */
@@ -179,23 +182,20 @@ p.subtitle {
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: all 0.2s;
     font-weight: 500;
 }
 
 .checkbox-label:hover {
     background-color: #30363d;
+    border-color: var(--text-secondary);
 }
 
 .checkbox-label input {
     margin-right: 0.75rem;
     width: 1.25rem;
     height: 1.25rem;
-    accent-color: var(--primary-accent);
-}
-.checkbox-label input:focus {
-    outline: 2px solid var(--primary-accent);
-    outline-offset: 2px;
+    accent-color: var(--secondary-accent);
 }
 
 .setup-actions {
@@ -223,9 +223,9 @@ p.subtitle {
 }
 
 .practice-list button:hover {
-    background-color: var(--primary-accent);
-    border-color: var(--primary-accent);
-    color: var(--bg-primary);
+    background-color: var(--secondary-accent);
+    border-color: var(--secondary-accent);
+    color: white;
     transform: translateX(5px);
 }
 
@@ -302,16 +302,18 @@ p.subtitle {
 }
 
 .answer-btn.correct {
-    background-color: var(--correct-color-bg) !important;
+    background-color: var(--bg-secondary) !important;
     border-color: var(--correct-color) !important;
     color: white !important;
+    box-shadow: 0 0 15px var(--correct-color-glow);
     transform: scale(1.02);
 }
 
 .answer-btn.incorrect {
-    background-color: var(--incorrect-color-bg) !important;
+    background-color: var(--bg-secondary) !important;
     border-color: var(--incorrect-color) !important;
     color: white !important;
+    box-shadow: 0 0 15px var(--incorrect-color-glow);
 }
 
 #feedback-area {
@@ -324,13 +326,13 @@ p.subtitle {
 }
 
 .feedback-correct {
-    background-color: var(--correct-color-bg);
+    background-color: rgba(35, 134, 54, 0.15);
     color: #3fb950;
     border: 1px solid var(--correct-color);
 }
 
 .feedback-incorrect {
-    background-color: var(--incorrect-color-bg);
+    background-color: rgba(218, 54, 51, 0.15);
     color: #ff7b72;
     border: 1px solid var(--incorrect-color);
 }
@@ -365,17 +367,19 @@ p.subtitle {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-.btn:focus {
+.btn:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.4);
+    box-shadow: 0 0 0 3px var(--bg-primary), 0 0 0 5px var(--primary-accent);
 }
 
 .primary-btn {
-    background-color: var(--primary-accent);
-    color: var(--bg-primary);
+    background-image: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    color: white;
+    background-size: 200% auto;
 }
 .primary-btn:hover {
-    background-color: var(--primary-accent-hover);
+    background-position: right center;
+    box-shadow: 0 6px 15px rgba(121, 120, 255, 0.2);
 }
 
 .secondary-btn {
@@ -392,9 +396,11 @@ p.subtitle {
 #score-display {
     font-size: clamp(3rem, 10vw, 4.5rem);
     font-weight: 700;
-    color: var(--primary-accent);
     margin-bottom: 2rem;
     text-align: center;
+    background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .final-score-actions {
     display: flex;
@@ -408,9 +414,18 @@ p.subtitle {
     flex-shrink: 0;
     width: 100%;
     text-align: center;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-stats {
+    font-weight: 500;
 }
 
 .footer a {
